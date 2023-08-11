@@ -1,0 +1,27 @@
+.global_div
+{
+  background-color:#0084c6;
+}
+.btn {
+    background-color: #eaedf3;
+    height: 30px;  line-height: 15px; height: 30px; border: 3px solid #6da3d2; text-align: center;
+}
+.button_icon_image_css
+{
+ margin-top: -5px;
+  max-height: 15px;    
+}
+
+.navbar-toggle .icon-bar{
+    
+    height:20px !important;
+  }
+.navbar{
+    background-color: #0084c6;
+    border-color:#6da3d2;
+}
+
+.Width
+{
+    width: 100%;
+}

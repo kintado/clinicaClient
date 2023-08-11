@@ -1,0 +1,26 @@
+.vertical-center {
+
+  }
+
+.orizontal-center {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+.shadowed_right_and_left {
+  padding: 20px;
+  width: 50%;
+  height: 500px;
+  max-width: 80%;
+  max-height: 80%;
+  box-shadow: 6px 0 4px -4px #999, -6px 0 4px -4px #999;
+  -moz-box-shadow: 6px 0 4px -4px #999, -6px 0 4px -4px #999;
+  -webkit-box-shadow: 6px 0 4px -4px #999, -6px 0 4px -4px #999;
+}
+
+.height_limit
+{
+    height: 200px;
+}

@@ -1,0 +1,17 @@
+<div class="dialog">
+  <div class="container">
+    &nbsp;
+  </div>
+  <div class="container">
+    <h3 class="d-flex justify-content-center">ATTENZIONE: CAMBIO NUMERO DI PEZZI!</h3>
+    <hr>
+    <p>Hai modificato la quantita' di pezzi per pacco!</p>
+    <p>Cambiando il numero di pezzi per pacco, e' possibile sia ricalcolare il numero pezzi in modo che il numero di pacchi resti immutato, sia cambiare il numero di pacchi lasciando il numero di pezzi in magazzino inseriti sin'ora immutato ed adattando il numero di pacchi al numero di pezzi ora inserito!</p>
+    <hr>
+    <div class="d-flex justify-content-center align-self-end" style="width: 100%;">
+      <button (click)="packsNumMustBeUnchanged()">Lascia il numero dei pacchi immutato</button> <button (click)="packsNumMustBeChanged()">Cambia il numero dei pacchi</button> <button (click)="resetPacksNum()">Azzera il numero dei pacchi</button><button (click)="cancelSave()">Annulla il salvataggio!</button>
+    </div>
+  </div>
+  <hr>
+</div>
+

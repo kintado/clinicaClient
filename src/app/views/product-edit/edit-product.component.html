@@ -1,0 +1,249 @@
+
+<!-- <button (click)="prova()">PROVA</button> -->
+<div  > <!-- -->
+<form [formGroup]="productForm" (keydown.enter)="$event.preventDefault()">
+<div class="container text-center" >
+  <div class="row row-cols-1">
+    &nbsp;
+  </div>
+  <div class="container">
+
+    <div class="row">
+      <div class="container">
+        <div class="row row-cols-2 theme_bg_color  align-middle">
+          <div class="col vertically_centred_version_01">
+
+            <h5>PRODOTTO <span *ngIf="type_id==1">(MEDICINALE)</span>
+              <ng-template [ngIf]="type_id==2">
+                <span>(PRESIDIO)</span>
+              </ng-template>
+            </h5>
+          </div>
+          <div class="col d-flex justify-content-end vertically_centred_version_01" mat-button [mat-dialog-close]="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16" (click)="closeDialog()">
+              <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+            </svg></div>
+        </div>
+    </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <hr>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+
+
+      <label class="form-label d-flex justify-content-start">Categoria ( {{product!.category_id}} )</label>
+      <select class="form-select" aria-label="Default select example" formControlName="category_id" [disabled]="true" *ngIf="readonly!=true; else category_text_only_label" >
+        <option value="0">Seleziona la categoria</option>
+        <option  *ngFor="let category of categories" [value]="category.id" selected="category.id==product!.category_id" >{{category.category}}</option>
+      </select>
+      <span (click)="caricaCategorie()" style="cursor: pointer" *ngIf="readonly!=true">aggiorna</span>
+      <ng-template #category_text_only_label>
+       {{categoryByCatId(product!.category_id)}}
+      </ng-template>
+
+      </div>
+      <div class="col">
+        <label class="form-label d-flex justify-content-start" >Nome (in breve)</label>
+        <input type="text" class="form-control" formControlName="name"   *ngIf="readonly!=true; else name_text_only_label">
+        <ng-template #name_text_only_label>
+          {{product!.name}}
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <br>
+        <div class="col d-flex justify-content-center"  >
+          <span ><button class="btn btn-primary theme_bg_color" (click)="openProductCategoriesMan()" *ngIf="readonly!=true" >AGGIUNGI CATEGORIE...</button></span>
+        </div>
+      </div>
+      <div class="col">
+        <label class="form-label d-flex justify-content-start">Nota</label> <!-- (ex-descrizione estesa pacco) -->
+        <input type="text" class="form-control" formControlName="packaging_name" *ngIf="readonly!=true; else description_text_only_label">
+
+        <ng-template #description_text_only_label>
+          {{product!.packaging_name}}
+        </ng-template>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col">
+
+        &nbsp;
+      </div>
+
+      <div class="col">
+        &nbsp;
+
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col">
+        <label class="form-label d-flex justify-content-start"  >Quantità totale pacchi presenti</label>
+          <input type="number" class="form-control" [value]="product!.total_packs" [readonly]="this.productForm.controls['id'].value!=null"   [ngClass]="{'quantityInputBoxReadOnly': this.productForm.controls['id'].value!=null }" formControlName="total_packs" *ngIf="!readonly; else total_pack_readonly">
+          <ng-template #total_pack_readonly>{{product!.total_packs}}</ng-template>
+          <div  *ngIf="((aggiunta==true) || (productForm.controls['pieces_per_pack'].value==product.pieces_per_pack))" >
+          <!--readonly!=true  && this.productForm.controls['id'].value!=null && this.productForm.controls['id'].value!=undefined -->
+          <button class="btn btn-primary theme_bg_color" (click)="openProductOperationsMan()"> CARICO/SCARICO...</button>
+        </div>
+
+      </div>
+
+      <div class="col">
+        <label class="form-label d-flex justify-content-start"  >Quantità minima pacchi (in "scorta")</label>
+        <input type="number" class="form-control" formControlName="minimum_packages_stock" *ngIf="readonly!=true; else minimum_packages_stock_text_only_label">
+        <ng-template #minimum_packages_stock_text_only_label>
+          {{product!.minimum_packages_stock}}
+        </ng-template>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <br>
+        <label class="form-label d-flex justify-content-start"  >Fornitore</label>
+        <input type="text" *ngIf="readonly!=true else piece_per_pack_text_only_label"  class="form-control" formControlName="fornitore">
+        <ng-template #piece_per_pack_text_only_label>
+          {{product!.fornitore}}
+        </ng-template>
+
+      </div>
+      <div class="col">
+        <br>
+        <label class="form-label d-flex justify-content-start"  >Pezzi per pacco</label>
+        <input type="number" *ngIf="readonly!=true else piece_per_pack_text_only_label"  class="form-control" formControlName="pieces_per_pack">
+        <ng-template #piece_per_pack_text_only_label>
+          {{product!.pieces_per_pack}}
+        </ng-template>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        &nbsp;
+      </div>
+      <div class="col">
+         Pezzi totali {{product!.total_pieces}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        &nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+
+        <label class="form-label d-flex justify-content-start"  >Cod. Barre pacco ({{this.product!.barcode}})</label>
+        <div class="flexContainer">
+          <input type="text" class="form-control inputField" formControlName="barcode" *ngIf="readonly!=true; else barcode_text_only_label" (change)="changeBarcode4Product()">
+          <button type="button"  *ngIf="readonly!=true" (click)="generateBarcode4Product()">+</button>
+<!-- (click)="openProductBarcodeForPackageMan()"
+-->
+          <ng-template #barcode_text_only_label>
+            {{product!.barcode}}
+          </ng-template>
+          <onlyimagebutton icontype="printer" *ngIf="productForm.controls['barcode'].value!=null && productForm.controls['barcode'].value!='' && productForm.controls['barcode'].value!=undefined" (click)="printBarcode4Product()"></onlyimagebutton>
+        </div>
+        <br>
+      </div>
+      <div class="col">
+        <label class="form-label d-flex justify-content-start" >Cod. Barre pezzo</label>
+          <div  *ngIf="productForm.controls['piecebarcodecheck'].value" class="flexContainer">
+            <input type="text" class="form-control inputField" formControlName="piece_barcode" *ngIf="readonly!=true; else piece_barcode_text_only_label"(change)="changeBarcode4PieceOfProduct()">
+            <button type="button" (click)="generateBarcode4PieceOfProduct()" *ngIf="readonly!=true">+</button>
+            <ng-template #piece_barcode_text_only_label>
+              {{product!.piece_barcode}}
+            </ng-template>
+            <onlyimagebutton icontype="printer" *ngIf="productForm.controls['piece_barcode'].value!=null && productForm.controls['piece_barcode'].value!='' && productForm.controls['piece_barcode'].value!=undefined" (click)="printBarcode4PieceOfProduct()"></onlyimagebutton>
+          </div>
+          <div class="form-check" >
+            <input class="form-check-input" type="checkbox" value="" [checked]="piecebarcodecheck"  formControlName="piecebarcodecheck" *ngIf="readonly!=true">
+            <label class="form-check-label" for="flexCheckChecked" *ngIf="readonly!=true">
+              Va considerato anche il codice a barre pezzo
+            </label>
+          </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col"><svg #barcode4product ></svg></div>
+    <div class="col"><svg #barcode4pieceofproduct></svg></div>
+  </div>
+  <div class="row">
+    <div class="col" id="barcodecol">
+      {{barcodeTypeOfProduct()}}
+    </div>
+
+    <div class="col">
+      {{barcodeTypeOfPieceOfProduct()}}
+
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col">
+      <hr>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 ">
+    <div class="col d-flex justify-content-end" >
+      <button type="button" class="btn btn-primary theme_bg_color" (click)="save()" >Salva</button>
+      <button type="button" class="btn btn-secondary" (click)="closeDialog()">Indietro</button>
+    </div>
+  </div>
+</div>
+</form>
+</div>
+<ng-template #not_authorized>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col d-flex justify-content-center">
+        <img src="assets/images/access-denied.png" alt="">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+       <h1 class="d-flex justify-content-center">NON AUTRORIZZATO!!!</h1>
+       <br>
+       Mi spiace ma non hai l'autorizzazione per accedere a questa area.
+       <br>
+       forse &egrave; un problema di login, o forse proprio non hai l'autorizzazione all'accesso.<br>
+       Se ritieni di avere l'autorizzazione come utente, ma non riesci ad accedere, prova a rieffettuare il login.<br>
+       In caso di problema persistente non riconosciuto come dovuto, contatta pure il progettista o l'amministrazione.
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-primary theme_bg_color" (click)="closeDialog()">Chiudi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<div id="htmlData">Yeee</div>

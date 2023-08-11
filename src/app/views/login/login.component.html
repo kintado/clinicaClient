@@ -1,0 +1,33 @@
+
+<div style="width: 100%; height: 100%;" >
+    <br>        
+    <br>
+    <div class="d-flex justify-content-center align-items-center "  style="border: none;">
+
+            <div class="card" style="width: 18rem; border: none;" class="shadowed_right_and_left ">
+                
+                <img class="card-img-top" src="./assets/images/loginbox/user_logo.png" alt="Card image cap">
+                <div class="card-body">
+                    
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Username</label>
+                          <input type="email" class="form-control"  aria-describedby="emailHelp" placeholder="Inserisci la username" [(ngModel)]="accessData.email">                          
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Password</label>
+                          <input type="password" class="form-control" placeholder="Inserisci la password" [(ngModel)]="accessData.password">
+                         
+                        </div>
+                        <div class="form-check">
+                         <br>
+                        </div>
+                        <div class="container d-flex justify-content-end">
+                            <button type="submit" class="btn btn-secondary" (click)="dologin()">Log-IN</button>
+                            <button type="submit" class="btn btn-secondary" (click)="check()">Check</button>
+                        </div>
+                    
+                </div>
+              </div>
+        
+    </div>
+</div>

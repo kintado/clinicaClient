@@ -1,0 +1,17 @@
+.globalExternalDialogDivCss
+{
+    margin: 10px;
+}
+.TitleDialogDivCss
+{
+    
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: grey;
+}
+
+button
+{
+    margin: 5px;
+}

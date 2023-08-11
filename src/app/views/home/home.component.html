@@ -1,0 +1,59 @@
+<div *ngIf="authservice.getLoggedUser()!.token!=null; else loginbox">
+<div class="container text-center" >
+    <div class="row">
+        <div class="col">
+          &nbsp;
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+          &nbsp;
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+          <img src="./assets/images/logo/logo1.png">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+          &nbsp;
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+          &nbsp;
+        </div>
+    </div>
+    <div class="row">
+      <!--*ngIf="this.authservice.user?.userData.role=='xxx'" -->
+      <div class="col" >
+        <button class="btn btn-secondary" (click)="drugsButtonClick()">FARMACI</button>
+      </div>
+      <div class="col">
+        <button class="btn btn-secondary" (click)="medicalPrincipalsButtonClick()">PRESIDI</button>
+      </div>
+      
+    </div>
+
+    <div class="row">
+        <div class="col">
+
+            <div class="row mt-5">
+                <div class="col-md-5 mx-auto">
+                    <div class="small fw-light"></div>
+                    <div class="input-group">
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+  </div>
+</div>
+<ng-template #loginbox>
+  <app-login></app-login>
+</ng-template>

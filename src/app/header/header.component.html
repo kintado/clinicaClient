@@ -1,0 +1,84 @@
+
+<div id="navbardiv">
+<nav *ngIf="mypath!='home' && mypath!='login'" class="navbar navbar-expand-lg bg-body-tertiary py-1 w-100 justify-content-between" >
+
+  <div class="container-fluid ">
+        <div class="d-flex flex-align-start">
+            <div style="padding-left:10px; padding-right:10px;">
+                <app-logo></app-logo>
+            </div>
+            <div style="padding-left:10px; padding-right:10px;">
+
+            </div>
+        </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" >
+        <span class="navbar-toggler-icon" ></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup" >
+        <div class="navbar-nav w-100 justify-content-between">
+
+
+
+            <div class="nav-link" ><app-detailedbutton [image_file]="'drugs/farmaci-on.png'" text="Farmaci" routerLink="/medicines"></app-detailedbutton></div>
+            <div class="nav-link" ><app-detailedbutton [image_file]="'medical_principals/medical_principals-on.png'" text="Presìdi" routerLink="/medical-utilities"></app-detailedbutton></div>
+            <div class="nav-link" ><app-detailedbutton [image_file]="'calendar/agenda-on.png'" text="Agenda"  text="Agenda" routerLink="agenda" *ngIf="isAdministrator()"></app-detailedbutton></div>
+
+            <div class="nav-link" ><onlyimagebutton icontype="users" style="background-color: transparent;" routerLink="users" ></onlyimagebutton></div>
+           <div class="nav-link" ><onlyimagebutton icontype="notify"  mat-icon-button *ngIf="isAdministrator()" [notifyHint]="stockserv!.nStockProducts" (click)="openStockReport()"></onlyimagebutton></div>
+<!--
+  [matMenuTriggerFor]="notify_menu"
+            <mat-menu #notify_menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>perm_identity</mat-icon>
+                <span>Notifiche SCORTA</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>password</mat-icon>
+                <span>Notifiche IMPEGNI</span>
+              </button>
+
+            </mat-menu>
+          -->
+            <div class="nav-link" ><onlyimagebutton icontype="user" style="background-color: transparent;"  mat-icon-button [matMenuTriggerFor]="user_menu"></onlyimagebutton></div>
+
+            <mat-menu #user_menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>perm_identity</mat-icon>
+                <span>Dettagli dati personali</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>password</mat-icon>
+                <span>Dati di accesso</span>
+              </button>
+              <button mat-menu-item (click)="logout()">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Esci</span>
+              </button>
+            </mat-menu>
+
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>dialpad</mat-icon>
+                <span>Redial</span>
+              </button>
+              <button mat-menu-item disabled>
+                <mat-icon>voicemail</mat-icon>
+                <span>Check voice mail</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>notifications_off</mat-icon>
+                <span>Disable alerts</span>
+              </button>
+            </mat-menu>
+          </div>
+
+
+      </div>
+
+    </div>
+
+  </nav>
+</div>

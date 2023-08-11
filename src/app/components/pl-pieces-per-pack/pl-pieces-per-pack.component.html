@@ -1,0 +1,2 @@
+<!-- <input  type="number" [value]="value" [ngClass]="{'defInput' : status=='view', 'editInput': status=='edit'}" (dblclick)="setEditState()" (keydown)="keypress($event, totalpacksbox)" [readOnly]="status=='view'" #totalpacksbox> -->
+<input  type="number" [value]="pieces_per_pack" [ngClass]="{'defInput' : status=='view', 'editInput': status=='edit'}"  (keydown)="keypress($event, totalpiecessbox)" [readOnly]="status=='view'" #totalpiecessbox>

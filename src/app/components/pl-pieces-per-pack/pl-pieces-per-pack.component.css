@@ -1,0 +1,25 @@
+.defInput{
+  width: 40px;
+  background-color: transparent;
+  border: none;
+  overflow: none;
+
+}
+.defInput:focus{
+  outline: none;
+}
+
+.editInput{
+  width: 40px;
+
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}

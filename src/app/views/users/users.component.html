@@ -1,0 +1,75 @@
+<hr>
+<div class="d-flex justify-content-center">
+    <!-- <div class="nav-link" ><onlyimagebutton icontype="printer" ></onlyimagebutton></div>&nbsp; &nbsp; -->
+    <div class="nav-link" ><onlyimagebutton icontype="delete" (click)="deleteSelectedUsers()"></onlyimagebutton></div>&nbsp; &nbsp;
+    <!-- <div class="nav-link" ><onlyimagebutton icontype="card"></onlyimagebutton></div>&nbsp;&nbsp; -->
+    <div class="nav-link" ><onlyimagebutton icontype="add" (click)="openUserForm()" ></onlyimagebutton></div>
+
+</div>
+<div class="content">
+    <div class="content d-flex justify-content-center">
+    <table id="example" class="display compact" style="width:100%">
+        <thead>
+            <tr>
+                <th> <input type="checkbox" (click)="selectAllUsers($event)"> </th>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>E-Mail</th>
+                <th>Cell</th>
+                <th>Username</th>
+
+                <th>ADMIN</th>
+                <th>ATTIVO</th>
+                <th>#</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody id="usersTableBody">
+             <tr *ngFor="let user of usersList; index as i;" [id]="'tr_user_'+user.id">
+                <td > <input type="checkbox" [id]="'user_checkbox_'+user.id" (change)="changeSelectOfUser(user.id, $event)"> </td>
+                <td [id]="'user_name_'+user.id">{{user.name}}</td>
+                <td [id]="'user_surname_'+user.id">{{user.surname}}</td>
+                <td [id]="'user_email_'+user.id">{{user.email}}</td>
+                <td [id]="'user_cell_'+user.id">{{user.cell}}</td>
+                <td [id]="'user_usename_'+user.id">{{user.username}}</td>
+
+                <td>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" [checked]="user.role=='ADMIN'" #rolebox (change)="changeRole(rolebox, user)">
+                    </div>
+                </td>
+                <td>
+                    <div class="form-check form-switch">
+
+                      <input class="form-check-input" type="checkbox" role="switch" [checked]="user.active==1" *ngIf="user.deactivable==1" #activestateswitch (change)="setActiveState(user, activestateswitch.checked)">
+                      <div *ngIf="user.deactivable==0 && user.active==1">
+                            Non deattivabile
+                      </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="nav-link" ><onlyimagebutton icontype="edit" (click)="editUserForm(user)"></onlyimagebutton></div>
+                </td>
+                <td>
+                  <div class="nav-link" ><onlyimagebutton icontype="delete" (click)="deleteUser(user)" *ngIf="user.removable==1"></onlyimagebutton></div>
+                </td>
+            </tr>
+
+        <tfoot>
+                        <tr>
+                          <th>  </th>
+                          <th>Nome</th>
+                          <th>Cognome</th>
+                          <th>E-Mail</th>
+                          <th>Cell</th>
+                          <th>Username</th>
+
+                          <th>ADMIN</th>
+                          <th>ATTIVO</th>
+                          <th>#</th>
+                          <th>#</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+</div>

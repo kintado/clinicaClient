@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/@zxing/library@0.18.4/umd/index.min.js"></script>
+</head>
+<body>
+    <video id="video" width="300" height="200"></video>
+    <input type="text" id="barcodeValue" readonly/>
+    <button id="btn" onclick="scanBarcode()">Scan Barcode</button>
+
+    <script>
+        const codeReader = new ZXing.BrowserMultiFormatReader();
+
+        function scanBarcode() {
+            codeReader.decodeFromVideoDevice(undefined, 'video', (result, err) => {
+                if (result) {
+                    document.getElementById('barcodeValue').value = result.getText();
+                    codeReader.reset();
+                }
+                if (err && !(err instanceof ZXing.NotFoundException)) {
+                    console.error(err);
+                    document.getElementById('barcodeValue').value = 'Error: ' + err;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

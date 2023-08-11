@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="row">
+        <div class="container">
+            <div class="col">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="container theme_bg_color">
+                <div class="col theme_bg_color" style="height: 30px;">
+                    <div class="container vertically_centred_version_01">
+                        <div class="d-flex justify-content-start" style="float:left">
+                            GESTORE CATEGORIE 
+                            
+                        </div>
+                        <div class="col d-flex justify-content-end vertically_centred_version_01" mat-button [mat-dialog-close]="true">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16" (click)="closeDialog()">
+                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container"><hr></div>
+    </div>
+    <div class="row">
+        <div class="col-sm">Categorie</div>
+        <div class="col-sm"></div>
+        <div class="col-sm"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <select class="custom-select" size="10" [(ngModel)]="selected_category_id" *ngIf="data.limitedFromOroductEdit!=true">
+            <option selected value="null">Open this select menu</option>
+            <option *ngFor="let category of categories" value="{{category.id}}" (click)="selectCategory(category.id)">{{category.category}}</option>
+            
+          </select>
+      </div>
+      <div class="col-sm">
+        
+      </div>
+      <div class="col-sm">
+        <button type="button" class="btn btn-primary theme_bg_color" (click)="newButtonClick()" >Nuovo</button>
+        <br><br>
+        <button type="button" class="btn btn-primary theme_bg_color" (click)="deleteClick()" *ngIf="data.limitedFromOroductEdit!=true">Elimina</button>
+        
+      </div>
+    </div>
+    <div *ngIf="status=='new'">
+            <div class="row">
+                <div class="col">
+                    <hr>
+                </div>
+            </div>    
+
+            <div class="row">
+                <div class="col">
+                    <label>Nome categoria</label>            
+                    <input type="text" class="form-control" [(ngModel)]="category_name">
+                </div>
+            </div>    
+            <div class="row">
+                <div class="col">
+                    <hr>
+                </div>
+            </div>  
+            <div class="row">
+                <div class="col"></div>
+                
+                
+                <div class="col"><button type="button" class="btn btn-primary theme_bg_color" (click)="saveButtonClick()" >Salva</button></div>
+                <div class="col"><button type="button" class="btn btn-primary theme_bg_color" (click)="cancelButtonClick()">Annulla</button></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <hr>
+                </div>
+            </div>    
+    </div>
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm"></div>
+        <div class="col-sm"></div>
+    </div>
+  </div>

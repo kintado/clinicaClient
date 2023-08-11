@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+.theme_bg_color {
+    background-color:#0084c6!important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.demo-inline-calendar-card .special-date
+{
+    background-color: #0084c6;
+    border-radius: 25%;
+}
+
+.demo-inline-calendar-card .selected-date
+{
+     background-color:yellow;
+    border-radius: 25px;
+}
+
+.cdk-global-overlay-wrapper {
+    display: flex;
+    position: absolute;
+    z-index: 1000;
+    overflow: auto;
+    pointer-events: auto;  
+  }
+
+  .vertically_centred_version_01
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

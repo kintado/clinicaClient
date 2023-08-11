@@ -1,0 +1,81 @@
+<div class="container">
+    <div style="width: 100%; background-color: gray; height: auto;" class="d-flex justify-content-start align-items-center">
+      <div style="float:left;height: auto; width: calc(100% - 30px)">&nbsp;
+        .:: UTENTE ::.
+      </div>
+      <div class="d-flex justify-content-end" style="float:left;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16" (click)="close()" style="cursor: pointer; ">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+          </svg>
+      </div>
+      <div style="float:left">&nbsp;</div>
+  </div>
+
+  <hr>
+
+  <h2>Inserimento utente</h2>
+  <form autocomplete="off" [formGroup]="form">
+  <div class="row">
+      <div class="col-md-6">
+          <label for="inputNome">Nome</label>
+          <input type="text" class="form-control" id="inputNome" placeholder="Nome" autocomplete="new-name" formControlName="name">
+      </div>
+      <div class="col-md-6">
+          <label for="inputCognome">Cognome</label>
+          <input type="text" class="form-control" id="inputCognome" placeholder="Cognome" autocomplete="new-surname"  formControlName="surname">
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-6">
+          <label for="inputEmail">Email</label>
+          <input type="email" class="form-control" id="inputEmail" placeholder="Email" autocomplete="new-email"  formControlName="email" [readonly]="state=='EDIT'">
+      </div>
+      <div class="col-md-6">
+          <label for="inputCell">Cellulare</label>
+          <input type="text" class="form-control" id="inputCell" placeholder="Cellulare" autocomplete="new-cell"  formControlName="cell">
+      </div>
+  </div>
+  <div class="form-group d-flex justify-content-center" style="background-color: yellow;">
+      <label for="inputUsername">Username: </label>
+      {{form.controls['email'].value}}
+     <!--
+      <input type="text" class="form-control" autocomplete="off" value="" autocomplete="new-username" id="inputUsername"  formControlName="username" [readonly]="state=='EDIT'">
+      -->
+  </div>
+  <div class="form-group" *ngIf="editpassw || state=='NEW'">
+      <label for="inputPassword">Password</label>
+      <input type="password" class="form-control"   formControlName="password" id="inputPassword" autocomplete="new-password">
+  </div>
+  <div class="form-group d-flex justify-content-center" *ngIf="state=='EDIT' && !editpassw">
+      <button (click)="setModPassw(true)">mod. passw</button>
+  </div>
+  <div class="form-group d-flex justify-content-center" *ngIf="state=='EDIT' && editpassw">
+    <button (click)="setModPassw(false)">Non mod. passw</button>
+</div>
+
+  <div class="form-group">
+      <label for="inputRole">Ruolo</label>
+      <select id="inputRole" class="form-control" autocomplete="new-role"  formControlName="role">
+          <option selected>Scegli...</option>
+          <option>ADMIN</option>
+          <option>OPERATORE</option>
+          <option>COLLABORATORE</option>
+      </select>
+  </div>
+  <div class="form-check col-md-4">
+      <input class="form-check-input" type="checkbox" id="activeUserCheck" checked>
+      <label class="form-check-label" for="activeUserCheck">
+          Utente Attivo
+      </label>
+  </div>
+
+  <div class="d-flex justify-content-end">
+
+
+      <button type="submit" class="btn btn-secondary mt-2" (click)="close()" *ngIf="this.state=='EDIT'">Annulla</button><button type="submit" class="btn btn-primary mt-2" (click)="save()">Salva</button>
+      <button (click)="test()">eee</button>
+  </div>
+  </form>
+</div>
+
+<div>&nbsp;</div>

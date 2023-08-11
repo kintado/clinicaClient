@@ -1,0 +1,65 @@
+.minimal_width_div_css{
+  min-width: 100px;
+  width: auto;
+}
+
+.fixed_minimal_width_div_css{
+width: 100px;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+
+button {
+  margin-right: 8px;
+}
+
+::ng-deep .cdk-overlay-pane {
+  align-items: center;
+}
+table th{
+font-size: 10px;
+}
+table td{
+font-size: 10px;
+}
+
+.id_column_css{
+  display: block;
+}
+.type_column_css{
+  display: block;
+}
+.category_column_css{
+  display: block;
+}
+.name_column_css{
+  display: block;
+}
+.note_column_css{
+  display: none;
+}
+.barcode_column_css{
+  display: none;
+}
+.piece_barcode_pezzo_column_css{
+  display: none;
+}
+.pieces_x_pack_column_css{
+  display: block;
+}
+.minimum_stock_column_css{
+  display: block;
+}
+.total_cost_column_css{
+  display: block;
+}
+.num_of_packs_column_css{
+  display: block;
+}
+
+.hidden_column_css{
+  display: hidden;
+  width: 0px;
+  overflow: hidden;
+}

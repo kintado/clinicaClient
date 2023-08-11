@@ -1,0 +1,1 @@
+<input  type="number" [value]="packs_number" [ngClass]="{'defInput' : status=='view', 'editInput': status=='edit'}" (keydown)="keypress($event, totalpacksbox)" [readOnly]="status=='view'" #totalpacksbox>

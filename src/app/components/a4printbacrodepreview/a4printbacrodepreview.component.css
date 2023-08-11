@@ -1,0 +1,10 @@
+.a4-sheet {
+  width: 420px;  /* o qualsiasi larghezza tu preferisca */
+  height: 594px;  /* o qualsiasi altezza tu preferisca */
+
+  background: #fff;  /* o qualsiasi colore tu preferisca */
+  position: relative;  /* permette il posizionamento di elementi figli */
+  border: solid 1px #000;
+  overflow: auto;  /* in caso il contenuto deborda */
+
+}

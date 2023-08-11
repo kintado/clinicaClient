@@ -1,0 +1,19 @@
+.demo-inline-calendar-card {
+    width: 300px;
+  }
+  .example-custom-date-class {
+    background: orange;
+  
+  }
+  
+  .special-date {
+    background-color: red;
+  }
+  .mat-button.mat-blue {
+    color: blue;
+ }
+ 
+ .mat-raised-button.mat-blue, .mat-flat-button.mat-blue{
+    background-color: blue;
+    color: white;
+ }

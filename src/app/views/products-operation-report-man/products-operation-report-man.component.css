@@ -1,0 +1,44 @@
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.selects {
+  display: flex;
+  gap: 10px;
+}
+
+/* ... Stili esistenti ... */
+
+.header {
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+

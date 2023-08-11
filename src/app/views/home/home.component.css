@@ -1,0 +1,23 @@
+
+.btn-secondary
+{
+    background-color: #eaedf3;
+    width:300px; height:200px;
+    border: 3px solid #6da3d2; 
+    text-align: center;
+    color: #000000;
+}
+.btn-secondary:hover
+{
+    background-color: #bbd1fd;
+    width:300px; height:200px;
+    border: 3px solid #6da3d2; 
+    
+    text-align: center;
+    color: #ffffff;
+    
+}
+.ms-n5 {
+    height: 40px;
+    margin-left: -35px;
+}

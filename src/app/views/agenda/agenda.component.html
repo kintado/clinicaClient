@@ -1,0 +1,25 @@
+<hr>
+<div *ngIf="authservice.getLoggedUser()!.token!=null; else loginbox">
+<div class="container d-flex justify-content-center">
+  
+  <div class="container">
+    <div class="row row-cols-2">
+      <div class="col">
+        <hr>
+        <mat-card class="demo-inline-calendar-card" #calend>
+          <mat-calendar   [dateClass]="dateclass" (selectedChange)="onSelectDate($event, myCalendar)" #myCalendar></mat-calendar>                  
+        </mat-card>
+      <p *ngIf="dateStringSelected!=null">Data selezionata: {{dateStringSelected}}</p></div>     
+      <div class="col">
+        <hr>
+        <app-agenda-details-form></app-agenda-details-form></div>
+      <div class="col"><hr></div>
+      <div class="col"><hr></div>
+    </div>
+  </div>
+
+</div>
+</div>
+<ng-template #loginbox>
+  <app-login></app-login>
+</ng-template>

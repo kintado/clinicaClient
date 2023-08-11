@@ -1,0 +1,133 @@
+<div *ngIf="authservice.getLoggedUser()!.token!=null; else loginbox">
+    <hr>
+    <div class="d-flex justify-content-center">
+        <div class="nav-link" ><onlyimagebutton icontype="printer" (click)="printListOfSelectedProducts()" ></onlyimagebutton></div>&nbsp; &nbsp;
+        <div class="nav-link" ><onlyimagebutton icontype="delete" (click)="deleteSelectedProducts()" ></onlyimagebutton></div>&nbsp; &nbsp;
+        <!-- <div class="nav-link" ><onlyimagebutton icontype="card"></onlyimagebutton></div>&nbsp;&nbsp;-->
+        <div class="nav-link" ><onlyimagebutton icontype="add"  (click)="newProduct()"></onlyimagebutton></div>&nbsp; &nbsp;
+        <div class="nav-link" ><onlyimagebutton icontype="barcode" (click)="startBarcodeScanner()" ></onlyimagebutton></div>
+    </div>
+    <div class="content">
+      <div class="content  d-flex justify-content-center">
+        &nbsp;
+      </div>
+      <div class="content  d-flex justify-content-center">
+        <div id="qr-reader" style="width: 600px"></div>
+      </div>
+      <div class="content  d-flex justify-content-center">
+        &nbsp;
+      </div>
+        <div class="content d-flex justify-content-center" *ngIf="RESULT=='OK'">
+          <table id="loadMedicinalsTable" class="display compact" >
+
+            <thead>
+              <tr>
+                <th></th>
+                <th><div> ID</div></th>
+                <!-- <th >TIPO</th> -->
+                <!-- <th >Categoria</th>-->
+                <th>Nome</th>
+                <!-- <th >Note</th>-->
+                <!-- <th  [ngClass]="{'hidden_column_css': columnsconf.columns.barcode == 0}" ><div  [ngClass]="{'hidden_column_css': columnsconf.columns.barcode == 0}" >Barcode</div></th> -->
+                <!-- <th  [ngClass]="{'hidden_column_css': columnsconf.columns.barcode_piece == 0}"><div [ngClass]="{'hidden_column_css': columnsconf.columns.barcode_piece == 0}">Barcode pezzo</div></th> -->
+                <th class="hidden_column_css" ><div class="hidden_column_css">barcode</div></th>
+                <th class="hidden_column_css" ><div class="hidden_column_css">barcode pezzi</div></th>
+                <th>Pezzi per pacco</th>
+                <th>Giacenza minima</th>
+                <th>Totale pezzi</th>
+                <th>Quanti pacchi</th>
+                <!-- <th ></th> -->
+                <th></th>
+                <th></th>
+              </tr>
+          </thead>
+          <tbody id="tbodyproducts">
+            <tr>
+              <td><input type="checkbox" class="controlForm" name="" id="global_checkbox" (change)="setAsGlobalAllProductCheckboxes()"></td>
+              <td>&nbsp;</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr *ngFor="let drug of drugsList; index as i;" [id]="'table_row_'+drug.id">
+              <td ><div ><input type="checkbox" class="controlForm" name="product_checkbox" [id]="'product_checkbox_'+drug.id" *ngIf="i!=1"></div> </td>
+              <td><div> {{drug.id}}</div></td>
+          <!--     <td ><div class="minimal_width_div_css">{{drug.type}}</div></td> -->
+          <!--     <td ><div class=""><div [id]="'category_name_of_pid'+drug.id">{{drug.category}}</div></div></td> -->
+              <td ><div class=""><div [id]="'name_of_pid'+drug.id">{{drug.name}}</div></div></td>
+            <!--   <td ><div class=""><div [id]="'packaging_name_of_pid'+drug.id">{{drug.packaging_name}}</div></div></td> -->
+              <td  class="hidden_column_css" ><div class="hidden_column_css">{{drug.barcode}}</div></td>
+              <td  class="hidden_column_css"><div class="hidden_column_css">{{drug.piece_barcode}}</div></td>
+              <td >
+                <div class="">
+                <app-pl-pieces-per-pack  [pieces_per_pack]="drug.pieces_per_pack" [product_id]="drug.id" [id]="'pieces_per_pack_of_pid'+drug.id"></app-pl-pieces-per-pack>
+                </div>
+              </td>
+              <td ><div class=""><div [id]="'minimum_packages_stock_of_pid'+drug.id">{{drug.minimum_packages_stock}}</div></div></td>
+              <td > <div [id]="'total_pieces_'+drug.id+'_div'">{{drug.total_pieces}}</div></td>
+              <td ><div class="">
+                <app-pl-total-packs [packs_number]="drug.total_packs" [pieces_per_pack]="drug.pieces_per_pack" [product_id]="drug.id" [id]="'total_packs'+drug.id"></app-pl-total-packs>
+                </div></td>
+         <!--      <td >
+                <div >
+                <onlyimagebutton icontype="card" (click)="editProductReadOnly(drug.id)"></onlyimagebutton>
+                </div>
+              </td> -->
+              <td><div ><onlyimagebutton icontype="edit" (click)="editProduct(drug.id);"></onlyimagebutton></div></td>
+              <td ><div ><onlyimagebutton icontype="delete" (click)="deleteProduct(drug.id)">{{drug.id}}</onlyimagebutton></div></td>
+
+
+      </tr>
+
+          <tfoot>
+                          <tr>
+                            <th > </th>
+                            <th  class="hidden_column_css" ><div class="hidden_column_css"> ID</div>  </th>
+                            <!--  <th >TIPO</th> -->
+                            <!--   <th >Categoria</th>-->
+                            <th >Nome</th>
+                            <!-- <th >Note</th>-->
+                            <!--        <th  [ngClass]="{'hidden_column_css': columnsconf.columns.barcode == 0}" ><div  [ngClass]="{'hidden_column_css': columnsconf.columns.barcode == 0}" >Barcode</div></th> -->
+                            <!--       <th  [ngClass]="{'hidden_column_css': columnsconf.columns.barcode_piece == 0}"><div [ngClass]="{'hidden_column_css': columnsconf.columns.barcode_piece == 0}">Barcode pezzo</div></th> -->
+                            <th  class="hidden_column_css" ><div class="hidden_column_css">barcode</div></th>
+                            <th  class="hidden_column_css" ><div class="hidden_column_css">barcode pezzi</div></th>
+                            <th  >Pezzi per pacco</th>
+                            <th >Giacenza minima</th>
+                            <th >Totale pezzi</th>
+                            <th >Quanti pacchi</th>
+                            <!--   <th ></th> -->
+                            <th ></th>
+                            <th ></th>
+              </tr>
+          </tfoot>
+          </table>
+    </div>
+
+
+        <div *ngIf="RESULT=='NOT AUTHORIZED'" class="content">
+            <div class="content d-flex justify-content-center">
+
+                        <div >
+                        <br><br><br><br>
+                        <h1>NON SEI AUTRORIZZATO A VEDERE QUESTA PAGINA</h1><br><br><br><br>
+                        Forse la sessione è scaduta prima che il pannello se ne sia accorto, oppure non sei autotizzato a vedere questa pagina.<br>
+                        Nel primo caso basterà provare a riloggarti.<br>
+                        Se la sessione ti risulta ancora ativa, sloggati e riloggati.<br>
+                        Se invece sei sicuro di essere autorizzato a vedere questa pagina e la progedura di ri-logging non risolve, contatta l'amministratore del sistema.<br>
+                        Oppure riloggati semplicemente cliccando qui: <span (click)="logout()" style="text-decoration: underline; cursor: pointer;">Login</span>
+                        </div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+    <ng-template #loginbox>
+        <app-login></app-login>
+    </ng-template>

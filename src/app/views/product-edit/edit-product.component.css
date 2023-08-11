@@ -1,0 +1,36 @@
+button {
+    margin-right: 8px;
+  }
+  ::ng-deep .cdk-overlay-pane {
+    align-items: center;
+  }
+  label{
+  font-size: 8px;
+  }
+
+
+
+
+
+  .flexContainer {
+    display: flex;
+}
+
+.inputField {
+    flex: 1;
+}
+input
+{
+  margin-right: -10px;
+  border-radius: 10px;
+}
+
+button{
+  border-top-right-radius: 5px!important;
+  border-bottom-right-radius: 5px!important;
+  border: 1px solid #ccc!important;
+}
+
+.quantityInputBoxReadOnly {
+  background-color: #ccc;
+}
